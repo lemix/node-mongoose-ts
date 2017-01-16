@@ -1,0 +1,30 @@
+{
+  "name": "node-mongoose-ts",
+  "version": "0.1.0",
+  "description": "Helper for declaring mongoose model with typescript",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lemix/node-mongoose-ts.git"
+  },
+  "keywords": [
+    "mongoose",
+    "typescript"
+  ],
+  "author": "Aleksey Mikhaylov <aleksey.mikhaylov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lemix/node-mongoose-ts/issues"
+  },
+  "homepage": "https://github.com/lemix/node-mongoose-ts#readme",
+  "devDependencies": {
+    "@types/mongoose": "^4.7.3"
+  },
+  "dependencies": {
+    "mongoose": "^4.7.7"
+  }
+}

@@ -4,12 +4,6 @@ This module is a nice way to declare mongoose models in typescript.
 * It provides an implementation of the model interface, including inheritance on the mongoose model.
 * It provides an interface of static methods, including inheritance on the mongoose model.
 
-# Installation
-
-```
-npm install node-mongoose-ts --save
-```
-
 # Usage
 
 ## Model declaration

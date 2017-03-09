@@ -10,10 +10,6 @@ This module is a nice way to declare mongoose models in typescript.
 npm install node-mongoose-ts --save
 ```
 
-```
-npm install @types/node-mongoose-ts --save-dev
-```
-
 # Usage
 
 ## Model declaration
@@ -31,65 +27,29 @@ import {
     DataModel, 
     DataField, 
     StaticMember, 
-    InstanceMember } = require('node-mongoose-ts');
+    InstanceMember } from 'node-mongoose-ts';
 ```
 
 2. Declare model interface
 
 ```typescript
 interface IExample {
-    id: string;
     exampleProp1: string;
-    exampleProp2: Array<Schema.Types.ObjectId>;
-
-    exampleMethod(input: string): void;
+    exampleProp2: Array<number>;
 }
 ```
 
-3. Declate interface for static methods
-
-```typescript
-interface IExampleStatics {
-    exampleStaticMethod(input: string): void;
-}
-```
-
-4. Declare model with implements model interface and static methods interface
+3. Declare model
 
 ```typescript
 @DataModel
-class ExampleSchema extends ModelSchema<IExample, IExampleStatics> implements IExample, IExampleStatics {
-    constructor(options?: SchemaOptions) {
-        super(options);
-    }
-
-    id: string;
-
+class ExampleSchema extends ModelSchema<IExample> implements IExample {
     @DataField({ required: true, type: Schema.Types.String, index: true })
     exampleProp1: string;
 
-    @DataField([Schema.Types.ObjectId])
-    exampleProp2: Array<Schema.Types.ObjectId>;
-
-    @InstanceMember
-    exampleMethod(this: IExample & Document, input: string): any {
-        return this;
-    }
-    
-    @StaticMember
-    exampleStaticMethod(this: IExampleStatics & Model<IExample & Document>, input: string): any {
-        return this;
-    } 
+    @DataField([Schema.Types.Number])
+    exampleProp2: Array<number>;
 }
-```
-
-5. Export model
-
-```typescript
-let model = (new ProductSchema()).getModel();
-
-export { model as ExampleModel };
-
 ```
 
 ## Usage declared model
@@ -97,11 +57,12 @@ export { model as ExampleModel };
 ```typescript
 import { ExampleModel } = required('../path/to/example-model');
 
-// Execute static method
-ExampleModel.exampleStaticMethod('Hello World');
+let myInst = new ExampleModel({
+    exampleProp1: "Hello",
+    exampleProp2: 1
+});
 
-// Access to instance fields and execute instance method 
-let example = new ExampleModel();
-example.exampleMethod('Hello World');
-console.log(example.exampleProp1);
+myInst.save().then(savedInst => {
+    console.log(`Successfully saved with exampleProp1=${savedInst.exampleProp1}`);
+});
 ```

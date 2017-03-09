@@ -42,7 +42,7 @@ interface IExample {
 3. Declare model
 
 ```typescript
-@DataModel
+@DataModel({ slug: "exampleProp1" })
 class ExampleSchema extends ModelSchema<IExample> implements IExample {
     @DataField({ required: true, type: Schema.Types.String, index: true })
     exampleProp1: string;
@@ -58,11 +58,11 @@ class ExampleSchema extends ModelSchema<IExample> implements IExample {
 import { ExampleModel } = required('../path/to/example-model');
 
 let myInst = new ExampleModel({
-    exampleProp1: "Hello",
+    exampleProp1: "Hello World",
     exampleProp2: 1
 });
 
 myInst.save().then(savedInst => {
-    console.log(`Successfully saved with exampleProp1=${savedInst.exampleProp1}`);
+    console.log(`Successfully saved with slug=${savedInst.slug}`); // Print: Successfully saved with slug=hello-world
 });
 ```

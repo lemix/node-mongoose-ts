@@ -18,16 +18,9 @@ npm install node-mongoose-ts --save
 
 ```typescript
 import { 
-    Model, 
-    Schema, 
-    Document, 
-    SchemaOptions,
-    ModelSchema, 
-    ModelSchemaDefault, 
+    ModelBase, 
     DataModel, 
-    DataField, 
-    StaticMember, 
-    InstanceMember } from 'node-mongoose-ts';
+    DataField } from 'node-mongoose-ts';
 ```
 
 2. Declare model interface
@@ -43,7 +36,7 @@ interface IExample {
 
 ```typescript
 @DataModel({ slug: "exampleProp1" })
-class ExampleSchema extends ModelSchema<IExample> implements IExample {
+class ExampleSchema extends ModelBase<IExample> implements IExample {
     @DataField({ required: true, type: Schema.Types.String, index: true })
     exampleProp1: string;
 
